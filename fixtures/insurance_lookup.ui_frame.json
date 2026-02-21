@@ -1,0 +1,39 @@
+{
+  "type": "ui_frame",
+  "version": "1.0",
+  "frameId": "insurance:lookup",
+  "title": "Find your policy",
+  "state": {
+    "values": {}
+  },
+  "components": [
+    {
+      "id": "policyNumber",
+      "type": "text",
+      "label": "Policy number",
+      "required": true
+    },
+    {
+      "id": "dob",
+      "type": "date",
+      "label": "Date of birth",
+      "required": true
+    },
+    {
+      "id": "coverageType",
+      "type": "select",
+      "label": "Coverage type",
+      "options": [
+        { "label": "Auto", "value": "auto" },
+        { "label": "Home", "value": "home" },
+        { "label": "Life", "value": "life" }
+      ]
+    }
+  ],
+  "primaryAction": {
+    "label": "Look up",
+    "action": {
+      "type": "ui_submit"
+    }
+  }
+}

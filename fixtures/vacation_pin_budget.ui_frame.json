@@ -1,0 +1,51 @@
+{
+  "type": "ui_frame",
+  "version": "1.0",
+  "frameId": "vacation:pin_budget",
+  "title": "Plan your vacation",
+  "state": {
+    "values": {
+      "destination": ""
+    }
+  },
+  "components": [
+    {
+      "id": "destination",
+      "type": "text",
+      "label": "Destination",
+      "required": true
+    },
+    {
+      "id": "travelDate",
+      "type": "date",
+      "label": "Travel date",
+      "required": true
+    },
+    {
+      "id": "budget",
+      "type": "slider",
+      "label": "Budget (USD)",
+      "min": 500,
+      "max": 10000,
+      "step": 100,
+      "required": true
+    },
+    {
+      "id": "homeBase",
+      "type": "map_pin",
+      "label": "Drop your home pin"
+    },
+    {
+      "id": "summary",
+      "type": "review",
+      "label": "Review your choices",
+      "source": "renderer:vacation_summary"
+    }
+  ],
+  "primaryAction": {
+    "label": "Find trips",
+    "action": {
+      "type": "ui_submit"
+    }
+  }
+}

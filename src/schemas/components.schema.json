@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourorg.dev/protocol/v0/components.schema.json",
+  "title": "Component",
+  "oneOf": [
+    { "$ref": "#/$defs/textComponent" },
+    { "$ref": "#/$defs/textareaComponent" },
+    { "$ref": "#/$defs/numberComponent" },
+    { "$ref": "#/$defs/dateComponent" },
+    { "$ref": "#/$defs/selectComponent" },
+    { "$ref": "#/$defs/sliderComponent" },
+    { "$ref": "#/$defs/mapPinComponent" },
+    { "$ref": "#/$defs/reviewComponent" }
+  ],
+  "$defs": {
+    "baseComponent": {
+      "type": "object",
+      "required": ["id", "type", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "type": "string" },
+        "label": { "type": "string", "minLength": 1 },
+        "required": { "type": "boolean" }
+      }
+    },
+    "textComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "text" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "textareaComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "textarea" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "numberComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "number" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "dateComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "date" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "selectComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "required": ["options"],
+          "properties": {
+            "type": { "const": "select" },
+            "options": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["label", "value"],
+                "properties": {
+                  "label": { "type": "string", "minLength": 1 },
+                  "value": { "type": "string", "minLength": 1 }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "sliderComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "required": ["min", "max", "step"],
+          "properties": {
+            "type": { "const": "slider" },
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "step": { "type": "number", "exclusiveMinimum": 0 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "mapPinComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "map_pin" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "reviewComponent": {
+      "allOf": [
+        { "$ref": "#/$defs/baseComponent" },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "review" },
+            "source": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

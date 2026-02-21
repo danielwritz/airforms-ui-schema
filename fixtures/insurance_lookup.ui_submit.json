@@ -1,0 +1,9 @@
+{
+  "type": "ui_submit",
+  "frameId": "insurance:lookup",
+  "values": {
+    "policyNumber": "ABC12345",
+    "dob": "1988-07-01",
+    "coverageType": "auto"
+  }
+}

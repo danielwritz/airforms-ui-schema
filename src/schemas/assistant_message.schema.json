@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourorg.dev/protocol/v0/assistant_message.schema.json",
+  "title": "AssistantMessage",
+  "type": "object",
+  "required": ["type", "text"],
+  "properties": {
+    "type": { "const": "assistant_message" },
+    "text": { "type": "string" },
+    "messageId": { "type": "string", "minLength": 1 },
+    "meta": { "type": "object" }
+  },
+  "additionalProperties": false
+}
