@@ -87,6 +87,67 @@ export declare const schemas: {
         };
         additionalProperties: boolean;
     };
+    turnRequestSchema: {
+        $schema: string;
+        $id: string;
+        title: string;
+        type: string;
+        required: string[];
+        properties: {
+            conversationId: {
+                type: string;
+                minLength: number;
+            };
+            message: {
+                oneOf: ({
+                    type: string;
+                    required: string[];
+                    properties: {
+                        type: {
+                            const: string;
+                        };
+                        text: {
+                            type: string;
+                            minLength: number;
+                        };
+                    };
+                    additionalProperties: boolean;
+                    $ref?: undefined;
+                } | {
+                    $ref: string;
+                    type?: undefined;
+                    required?: undefined;
+                    properties?: undefined;
+                    additionalProperties?: undefined;
+                })[];
+            };
+        };
+        additionalProperties: boolean;
+    };
+    turnResponseSchema: {
+        $schema: string;
+        $id: string;
+        title: string;
+        type: string;
+        required: string[];
+        properties: {
+            conversationId: {
+                type: string;
+                minLength: number;
+            };
+            messages: {
+                type: string;
+                minItems: number;
+                items: {
+                    $ref: string;
+                };
+            };
+            ui: {
+                $ref: string;
+            };
+        };
+        additionalProperties: boolean;
+    };
     componentsSchema: {
         $schema: string;
         $id: string;
@@ -95,7 +156,7 @@ export declare const schemas: {
             $ref: string;
         }[];
         $defs: {
-            textComponent: {
+            baseComponent: {
                 type: string;
                 required: string[];
                 properties: {
@@ -104,7 +165,8 @@ export declare const schemas: {
                         minLength: number;
                     };
                     type: {
-                        const: string;
+                        type: string;
+                        minLength: number;
                     };
                     label: {
                         type: string;
@@ -113,111 +175,116 @@ export declare const schemas: {
                     required: {
                         type: string;
                     };
+                    placeholder: {
+                        type: string;
+                    };
                 };
-                additionalProperties: boolean;
+            };
+            textComponent: {
+                type: string;
+                allOf: ({
+                    $ref: string;
+                    type?: undefined;
+                    properties?: undefined;
+                } | {
+                    type: string;
+                    properties: {
+                        type: {
+                            const: string;
+                        };
+                    };
+                    $ref?: undefined;
+                })[];
+                unevaluatedProperties: boolean;
             };
             textareaComponent: {
                 type: string;
-                required: string[];
-                properties: {
-                    id: {
-                        type: string;
-                        minLength: number;
+                allOf: ({
+                    $ref: string;
+                    type?: undefined;
+                    properties?: undefined;
+                } | {
+                    type: string;
+                    properties: {
+                        type: {
+                            const: string;
+                        };
                     };
-                    type: {
-                        const: string;
-                    };
-                    label: {
-                        type: string;
-                        minLength: number;
-                    };
-                    required: {
-                        type: string;
-                    };
-                };
-                additionalProperties: boolean;
+                    $ref?: undefined;
+                })[];
+                unevaluatedProperties: boolean;
             };
             numberComponent: {
                 type: string;
-                required: string[];
-                properties: {
-                    id: {
-                        type: string;
-                        minLength: number;
+                allOf: ({
+                    $ref: string;
+                    type?: undefined;
+                    properties?: undefined;
+                } | {
+                    type: string;
+                    properties: {
+                        type: {
+                            const: string;
+                        };
                     };
-                    type: {
-                        const: string;
-                    };
-                    label: {
-                        type: string;
-                        minLength: number;
-                    };
-                    required: {
-                        type: string;
-                    };
-                };
-                additionalProperties: boolean;
+                    $ref?: undefined;
+                })[];
+                unevaluatedProperties: boolean;
             };
             dateComponent: {
                 type: string;
-                required: string[];
-                properties: {
-                    id: {
-                        type: string;
-                        minLength: number;
+                allOf: ({
+                    $ref: string;
+                    type?: undefined;
+                    properties?: undefined;
+                } | {
+                    type: string;
+                    properties: {
+                        type: {
+                            const: string;
+                        };
                     };
-                    type: {
-                        const: string;
-                    };
-                    label: {
-                        type: string;
-                        minLength: number;
-                    };
-                    required: {
-                        type: string;
-                    };
-                };
-                additionalProperties: boolean;
+                    $ref?: undefined;
+                })[];
+                unevaluatedProperties: boolean;
             };
             selectComponent: {
                 type: string;
-                required: string[];
-                properties: {
-                    id: {
-                        type: string;
-                        minLength: number;
-                    };
-                    type: {
-                        const: string;
-                    };
-                    label: {
-                        type: string;
-                        minLength: number;
-                    };
-                    required: {
-                        type: string;
-                    };
-                    options: {
-                        type: string;
-                        minItems: number;
-                        items: {
+                allOf: ({
+                    $ref: string;
+                    type?: undefined;
+                    required?: undefined;
+                    properties?: undefined;
+                } | {
+                    type: string;
+                    required: string[];
+                    properties: {
+                        type: {
+                            const: string;
+                        };
+                        options: {
                             type: string;
-                            required: string[];
-                            properties: {
-                                label: {
-                                    type: string;
-                                    minLength: number;
+                            minItems: number;
+                            items: {
+                                type: string;
+                                required: string[];
+                                properties: {
+                                    label: {
+                                        type: string;
+                                        minLength: number;
+                                    };
+                                    value: {
+                                        type: string;
+                                        minLength: number;
+                                    };
                                 };
-                                value: {
-                                    type: string;
-                                    minLength: number;
-                                };
+                                additionalProperties: boolean;
                             };
-                            additionalProperties: boolean;
                         };
                     };
-                };
-                additionalProperties: boolean;
+                    $ref?: undefined;
+                })[];
+                unevaluatedProperties: boolean;
             };
             sliderComponent: {
                 type: string;

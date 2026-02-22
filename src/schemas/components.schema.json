@@ -20,7 +20,8 @@
         "id": { "type": "string", "minLength": 1 },
         "type": { "type": "string", "minLength": 1 },
         "label": { "type": "string", "minLength": 1 },
-        "required": { "type": "boolean" }
+        "required": { "type": "boolean" },
+        "placeholder": { "type": "string" }
       }
     },
     "textComponent": {

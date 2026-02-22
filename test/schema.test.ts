@@ -5,7 +5,9 @@ import insuranceSubmit from "../fixtures/insurance_lookup.ui_submit.json";
 import {
   validateAssistantMessage,
   validateUiFrame,
-  validateUiSubmit
+  validateUiSubmit,
+  validateTurnRequest,
+  validateTurnResponse
 } from "../src/validate";
 
 describe("schema fixtures", () => {
@@ -28,6 +30,42 @@ describe("schema fixtures", () => {
     const result = validateAssistantMessage({
       type: "assistant_message",
       text: "Please enter your policy details."
+    });
+
+    expect(result.ok).toBe(true);
+  });
+
+  test("turn request validates for user_text", () => {
+    const result = validateTurnRequest({
+      conversationId: "c_123",
+      message: {
+        type: "user_text",
+        text: "I want to check my insurance."
+      }
+    });
+
+    expect(result.ok).toBe(true);
+  });
+
+  test("turn request validates for ui_submit", () => {
+    const result = validateTurnRequest({
+      conversationId: "c_123",
+      message: insuranceSubmit
+    });
+
+    expect(result.ok).toBe(true);
+  });
+
+  test("turn response validates with assistant message and ui frame", () => {
+    const result = validateTurnResponse({
+      conversationId: "c_123",
+      messages: [
+        {
+          type: "assistant_message",
+          text: "Please enter your policy details."
+        }
+      ],
+      ui: insuranceFrame
     });
 
     expect(result.ok).toBe(true);

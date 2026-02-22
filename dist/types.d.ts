@@ -8,6 +8,7 @@ type BaseComponent = {
     id: string;
     label: string;
     required?: boolean;
+    placeholder?: string;
 };
 export type TextComponent = BaseComponent & {
     type: "text";
@@ -64,5 +65,18 @@ export type UiSubmit = {
     type: "ui_submit";
     frameId: string;
     values: Record<string, unknown>;
+};
+export type UserTextMessage = {
+    type: "user_text";
+    text: string;
+};
+export type TurnRequest = {
+    conversationId: string;
+    message: UserTextMessage | UiSubmit;
+};
+export type TurnResponse = {
+    conversationId: string;
+    messages: AssistantMessage[];
+    ui?: UiFrame;
 };
 export {};

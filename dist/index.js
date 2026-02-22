@@ -21,6 +21,8 @@ exports.schemas = void 0;
 const assistant_message_schema_json_1 = __importDefault(require("./schemas/assistant_message.schema.json"));
 const ui_frame_schema_json_1 = __importDefault(require("./schemas/ui_frame.schema.json"));
 const ui_submit_schema_json_1 = __importDefault(require("./schemas/ui_submit.schema.json"));
+const turn_request_schema_json_1 = __importDefault(require("./schemas/turn_request.schema.json"));
+const turn_response_schema_json_1 = __importDefault(require("./schemas/turn_response.schema.json"));
 const components_schema_json_1 = __importDefault(require("./schemas/components.schema.json"));
 const actions_schema_json_1 = __importDefault(require("./schemas/actions.schema.json"));
 __exportStar(require("./types"), exports);
@@ -29,6 +31,8 @@ exports.schemas = {
     assistantMessageSchema: assistant_message_schema_json_1.default,
     uiFrameSchema: ui_frame_schema_json_1.default,
     uiSubmitSchema: ui_submit_schema_json_1.default,
+    turnRequestSchema: turn_request_schema_json_1.default,
+    turnResponseSchema: turn_response_schema_json_1.default,
     componentsSchema: components_schema_json_1.default,
     actionsSchema: actions_schema_json_1.default
 };

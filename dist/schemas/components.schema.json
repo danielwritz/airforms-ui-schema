@@ -13,73 +13,95 @@
         { "$ref": "#/$defs/reviewComponent" }
     ],
     "$defs": {
-        "textComponent": {
+        "baseComponent": {
             "type": "object",
             "required": ["id", "type", "label"],
             "properties": {
                 "id": { "type": "string", "minLength": 1 },
-                "type": { "const": "text" },
+                "type": { "type": "string", "minLength": 1 },
                 "label": { "type": "string", "minLength": 1 },
-                "required": { "type": "boolean" }
-            },
-            "additionalProperties": false
+                "required": { "type": "boolean" },
+                "placeholder": { "type": "string" }
+            }
+        },
+        "textComponent": {
+            "type": "object",
+            "allOf": [
+                { "$ref": "#/$defs/baseComponent" },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": { "const": "text" }
+                    }
+                }
+            ],
+            "unevaluatedProperties": false
         },
         "textareaComponent": {
             "type": "object",
-            "required": ["id", "type", "label"],
-            "properties": {
-                "id": { "type": "string", "minLength": 1 },
-                "type": { "const": "textarea" },
-                "label": { "type": "string", "minLength": 1 },
-                "required": { "type": "boolean" }
-            },
-            "additionalProperties": false
+            "allOf": [
+                { "$ref": "#/$defs/baseComponent" },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": { "const": "textarea" }
+                    }
+                }
+            ],
+            "unevaluatedProperties": false
         },
         "numberComponent": {
             "type": "object",
-            "required": ["id", "type", "label"],
-            "properties": {
-                "id": { "type": "string", "minLength": 1 },
-                "type": { "const": "number" },
-                "label": { "type": "string", "minLength": 1 },
-                "required": { "type": "boolean" }
-            },
-            "additionalProperties": false
+            "allOf": [
+                { "$ref": "#/$defs/baseComponent" },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": { "const": "number" }
+                    }
+                }
+            ],
+            "unevaluatedProperties": false
         },
         "dateComponent": {
             "type": "object",
-            "required": ["id", "type", "label"],
-            "properties": {
-                "id": { "type": "string", "minLength": 1 },
-                "type": { "const": "date" },
-                "label": { "type": "string", "minLength": 1 },
-                "required": { "type": "boolean" }
-            },
-            "additionalProperties": false
+            "allOf": [
+                { "$ref": "#/$defs/baseComponent" },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": { "const": "date" }
+                    }
+                }
+            ],
+            "unevaluatedProperties": false
         },
         "selectComponent": {
             "type": "object",
-            "required": ["id", "type", "label", "options"],
-            "properties": {
-                "id": { "type": "string", "minLength": 1 },
-                "type": { "const": "select" },
-                "label": { "type": "string", "minLength": 1 },
-                "required": { "type": "boolean" },
-                "options": {
-                    "type": "array",
-                    "minItems": 1,
-                    "items": {
-                        "type": "object",
-                        "required": ["label", "value"],
-                        "properties": {
-                            "label": { "type": "string", "minLength": 1 },
-                            "value": { "type": "string", "minLength": 1 }
-                        },
-                        "additionalProperties": false
+            "allOf": [
+                { "$ref": "#/$defs/baseComponent" },
+                {
+                    "type": "object",
+                    "required": ["options"],
+                    "properties": {
+                        "type": { "const": "select" },
+                        "options": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "object",
+                                "required": ["label", "value"],
+                                "properties": {
+                                    "label": { "type": "string", "minLength": 1 },
+                                    "value": { "type": "string", "minLength": 1 }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
                     }
                 }
-            },
-            "additionalProperties": false
+            ],
+            "unevaluatedProperties": false
         },
         "sliderComponent": {
             "type": "object",

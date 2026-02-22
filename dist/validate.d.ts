@@ -8,3 +8,5 @@ export type ValidationResult = {
 export declare function validateAssistantMessage(payload: unknown): ValidationResult;
 export declare function validateUiFrame(payload: unknown): ValidationResult;
 export declare function validateUiSubmit(payload: unknown): ValidationResult;
+export declare function validateTurnRequest(payload: unknown): ValidationResult;
+export declare function validateTurnResponse(payload: unknown): ValidationResult;

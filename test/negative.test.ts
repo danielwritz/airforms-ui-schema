@@ -2,7 +2,9 @@ import { describe, expect, test } from "vitest";
 import {
   validateAssistantMessage,
   validateUiFrame,
-  validateUiSubmit
+  validateUiSubmit,
+  validateTurnRequest,
+  validateTurnResponse
 } from "../src/validate";
 
 describe("negative validation", () => {
@@ -64,6 +66,39 @@ describe("negative validation", () => {
     const result = validateUiSubmit({
       type: "ui_submit",
       values: {}
+    });
+
+    expect(result.ok).toBe(false);
+  });
+
+  test("fails turn request with unsupported message action", () => {
+    const result = validateTurnRequest({
+      conversationId: "c_123",
+      message: {
+        type: "ui_back",
+        frameId: "insurance:lookup"
+      }
+    });
+
+    expect(result.ok).toBe(false);
+  });
+
+  test("fails turn request with empty user text", () => {
+    const result = validateTurnRequest({
+      conversationId: "c_123",
+      message: {
+        type: "user_text",
+        text: ""
+      }
+    });
+
+    expect(result.ok).toBe(false);
+  });
+
+  test("fails turn response without assistant messages", () => {
+    const result = validateTurnResponse({
+      conversationId: "c_123",
+      messages: []
     });
 
     expect(result.ok).toBe(false);

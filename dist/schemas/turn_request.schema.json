@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://yourorg.dev/protocol/v0/turn_request.schema.json",
+    "title": "TurnRequest",
+    "type": "object",
+    "required": ["conversationId", "message"],
+    "properties": {
+        "conversationId": { "type": "string", "minLength": 1 },
+        "message": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": ["type", "text"],
+                    "properties": {
+                        "type": { "const": "user_text" },
+                        "text": { "type": "string", "minLength": 1 }
+                    },
+                    "additionalProperties": false
+                },
+                { "$ref": "ui_submit.schema.json" }
+            ]
+        }
+    },
+    "additionalProperties": false
+}
