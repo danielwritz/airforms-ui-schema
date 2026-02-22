@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://yourorg.dev/protocol/v0/actions.schema.json",
+    "title": "ActionButton",
+    "type": "object",
+    "required": ["label", "action"],
+    "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "action": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["ui_submit", "ui_back", "ui_replace"]
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}
