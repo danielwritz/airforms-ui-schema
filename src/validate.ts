@@ -6,8 +6,8 @@ import componentsSchema from "./schemas/components.schema.json";
 import actionsSchema from "./schemas/actions.schema.json";
 import type { AssistantMessage, UiFrame, UiSubmit } from "./types";
 
-export type ValidationResult<T> =
-  | { ok: true; data: T }
+export type ValidationResult =
+  | { ok: true }
   | { ok: false; errors: ErrorObject[] | null | undefined };
 
 const ajv = new Ajv2020({ allErrors: true, strict: true });
@@ -19,22 +19,22 @@ const validateAssistantMessageSchema = ajv.compile<AssistantMessage>(assistantMe
 const validateUiFrameSchema = ajv.compile<UiFrame>(uiFrameSchema);
 const validateUiSubmitSchema = ajv.compile<UiSubmit>(uiSubmitSchema);
 
-function runValidation<T>(validator: ValidateFunction<T>, payload: unknown): ValidationResult<T> {
+function runValidation<T>(validator: ValidateFunction<T>, payload: unknown): ValidationResult {
   if (validator(payload)) {
-    return { ok: true, data: payload as T };
+    return { ok: true };
   }
 
   return { ok: false, errors: validator.errors };
 }
 
-export function validateAssistantMessage(payload: unknown): ValidationResult<AssistantMessage> {
+export function validateAssistantMessage(payload: unknown): ValidationResult {
   return runValidation(validateAssistantMessageSchema, payload);
 }
 
-export function validateUiFrame(payload: unknown): ValidationResult<UiFrame> {
+export function validateUiFrame(payload: unknown): ValidationResult {
   return runValidation(validateUiFrameSchema, payload);
 }
 
-export function validateUiSubmit(payload: unknown): ValidationResult<UiSubmit> {
+export function validateUiSubmit(payload: unknown): ValidationResult {
   return runValidation(validateUiSubmitSchema, payload);
 }

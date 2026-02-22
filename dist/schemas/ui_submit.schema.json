@@ -1,0 +1,13 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://yourorg.dev/protocol/v0/ui_submit.schema.json",
+    "title": "UiSubmit",
+    "type": "object",
+    "required": ["type", "frameId", "values"],
+    "properties": {
+        "type": { "const": "ui_submit" },
+        "frameId": { "type": "string", "minLength": 1 },
+        "values": { "type": "object" }
+    },
+    "additionalProperties": false
+}

@@ -184,7 +184,7 @@ src/
     ui_frame.schema.json
     ui_submit.schema.json
     assistant_message.schema.json
-  defs/
+  schemas/
     components.schema.json
     actions.schema.json
   index.ts
@@ -203,7 +203,7 @@ test/
 # Installation
 
 ```bash
-npm install @yourorg/protocol
+npm install @airforms/protocol
 ```
 
 ---
@@ -213,7 +213,7 @@ npm install @yourorg/protocol
 ## Validate a frame
 
 ```ts
-import { validateUiFrame } from "@yourorg/protocol"
+import { validateUiFrame } from "@airforms/protocol"
 
 const result = validateUiFrame(frame)
 
@@ -225,7 +225,7 @@ if (!result.ok) {
 ## Import types
 
 ```ts
-import type { UiFrame, UiSubmit } from "@yourorg/protocol"
+import type { UiFrame, UiSubmit } from "@airforms/protocol"
 ```
 
 ---
