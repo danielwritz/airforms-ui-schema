@@ -1,4 +1,4 @@
-# Air Forms UI Schema (v0)
+# AirForms UI Schema (v0)
 
 A versioned, schema-first contract for rendering deterministic UI inside conversational interfaces.
 
@@ -203,7 +203,7 @@ test/
 # Installation
 
 ```bash
-npm install @airforms/protocol
+npm install @airforms/ui-schema
 ```
 
 ---
@@ -213,7 +213,7 @@ npm install @airforms/protocol
 ## Validate a frame
 
 ```ts
-import { validateUiFrame } from "@airforms/protocol"
+import { validateUiFrame } from "@airforms/ui-schema"
 
 const result = validateUiFrame(frame)
 
@@ -225,7 +225,7 @@ if (!result.ok) {
 ## Import types
 
 ```ts
-import type { UiFrame, UiSubmit } from "@airforms/protocol"
+import type { UiFrame, UiSubmit } from "@airforms/ui-schema"
 ```
 
 ---
