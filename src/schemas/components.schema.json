@@ -18,10 +18,11 @@
       "required": ["id", "type", "label"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
-        "type": { "type": "string" },
+        "type": { "type": "string", "minLength": 1 },
         "label": { "type": "string", "minLength": 1 },
         "required": { "type": "boolean" }
-      }
+      },
+      "additionalProperties": false
     },
     "textComponent": {
       "allOf": [
@@ -30,8 +31,7 @@
           "type": "object",
           "properties": {
             "type": { "const": "text" }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },
@@ -42,8 +42,7 @@
           "type": "object",
           "properties": {
             "type": { "const": "textarea" }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },
@@ -54,8 +53,7 @@
           "type": "object",
           "properties": {
             "type": { "const": "number" }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },
@@ -66,8 +64,7 @@
           "type": "object",
           "properties": {
             "type": { "const": "date" }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },
@@ -92,51 +89,46 @@
                 "additionalProperties": false
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },
     "sliderComponent": {
-      "allOf": [
-        { "$ref": "#/$defs/baseComponent" },
-        {
-          "type": "object",
-          "required": ["min", "max", "step"],
-          "properties": {
-            "type": { "const": "slider" },
-            "min": { "type": "number" },
-            "max": { "type": "number" },
-            "step": { "type": "number", "exclusiveMinimum": 0 }
-          },
-          "additionalProperties": false
-        }
-      ]
+      "type": "object",
+      "required": ["id", "type", "label", "min", "max", "step"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "const": "slider" },
+        "label": { "type": "string", "minLength": 1 },
+        "required": { "type": "boolean" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "step": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
     },
     "mapPinComponent": {
-      "allOf": [
-        { "$ref": "#/$defs/baseComponent" },
-        {
-          "type": "object",
-          "properties": {
-            "type": { "const": "map_pin" }
-          },
-          "additionalProperties": false
-        }
-      ]
+      "type": "object",
+      "required": ["id", "type", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "const": "map_pin" },
+        "label": { "type": "string", "minLength": 1 },
+        "required": { "type": "boolean" }
+      },
+      "additionalProperties": false
     },
     "reviewComponent": {
-      "allOf": [
-        { "$ref": "#/$defs/baseComponent" },
-        {
-          "type": "object",
-          "properties": {
-            "type": { "const": "review" },
-            "source": { "type": "string", "minLength": 1 }
-          },
-          "additionalProperties": false
-        }
-      ]
+      "type": "object",
+      "required": ["id", "type", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "const": "review" },
+        "label": { "type": "string", "minLength": 1 },
+        "required": { "type": "boolean" },
+        "source": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
     }
   }
 }
