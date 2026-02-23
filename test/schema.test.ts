@@ -56,6 +56,18 @@ describe("schema fixtures", () => {
     expect(result.ok).toBe(true);
   });
 
+  test("turn request validates for llm_result", () => {
+    const result = validateTurnRequest({
+      conversationId: "c_123",
+      message: {
+        type: "llm_result",
+        text: "The user wants to book travel and needs destination and budget fields."
+      }
+    });
+
+    expect(result.ok).toBe(true);
+  });
+
   test("turn response validates with assistant message and ui frame", () => {
     const result = validateTurnResponse({
       conversationId: "c_123",

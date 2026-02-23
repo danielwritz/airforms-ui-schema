@@ -70,9 +70,13 @@ export type UserTextMessage = {
     type: "user_text";
     text: string;
 };
+export type LlmResultMessage = {
+    type: "llm_result";
+    text: string;
+};
 export type TurnRequest = {
     conversationId: string;
-    message: UserTextMessage | UiSubmit;
+    message: UserTextMessage | LlmResultMessage | UiSubmit;
 };
 export type TurnResponse = {
     conversationId: string;

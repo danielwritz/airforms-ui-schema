@@ -95,6 +95,18 @@ describe("negative validation", () => {
     expect(result.ok).toBe(false);
   });
 
+  test("fails turn request with empty llm_result text", () => {
+    const result = validateTurnRequest({
+      conversationId: "c_123",
+      message: {
+        type: "llm_result",
+        text: ""
+      }
+    });
+
+    expect(result.ok).toBe(false);
+  });
+
   test("fails turn response without assistant messages", () => {
     const result = validateTurnResponse({
       conversationId: "c_123",
