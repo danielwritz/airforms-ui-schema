@@ -59,6 +59,7 @@ describe("schema fixtures", () => {
   test("turn request validates for llm_result", () => {
     const result = validateTurnRequest({
       conversationId: "c_123",
+      formSensitivity: 4,
       message: {
         type: "llm_result",
         text: "The user wants to book travel and needs destination and budget fields."

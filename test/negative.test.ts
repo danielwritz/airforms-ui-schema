@@ -107,6 +107,19 @@ describe("negative validation", () => {
     expect(result.ok).toBe(false);
   });
 
+  test("fails turn request with out-of-range form sensitivity", () => {
+    const result = validateTurnRequest({
+      conversationId: "c_123",
+      formSensitivity: 11,
+      message: {
+        type: "user_text",
+        text: "Need help planning a trip"
+      }
+    });
+
+    expect(result.ok).toBe(false);
+  });
+
   test("fails turn response without assistant messages", () => {
     const result = validateTurnResponse({
       conversationId: "c_123",

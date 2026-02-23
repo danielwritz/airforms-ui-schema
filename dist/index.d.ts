@@ -98,6 +98,11 @@ export declare const schemas: {
                 type: string;
                 minLength: number;
             };
+            formSensitivity: {
+                type: string;
+                minimum: number;
+                maximum: number;
+            };
             message: {
                 oneOf: ({
                     type: string;

@@ -77,6 +77,7 @@ export type LlmResultMessage = {
 export type TurnRequest = {
     conversationId: string;
     message: UserTextMessage | LlmResultMessage | UiSubmit;
+    formSensitivity?: number;
 };
 export type TurnResponse = {
     conversationId: string;
